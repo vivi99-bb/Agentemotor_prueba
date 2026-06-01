@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Pólizas</title>
+    <p id="policy-count"></p>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Gestión de Pólizas</h1>
+
+        <div class="filters">
+
+            <button onclick="loadPolicies()">
+                Todas
+            </button>
+
+            <button onclick="loadPolicies('upcoming')">
+                Upcoming
+            </button>
+
+            <button onclick="loadPolicies('renewable')">
+                Renewable
+            </button>
+
+            <button onclick="loadPolicies('lost')">
+                Lost
+            </button>
+
+            <button onclick="loadPolicies('renewed')">
+                Renewed
+            </button>
+
+        </div>
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Cliente</th>
+                    <th>Póliza</th>
+                    <th>Tipo</th>
+                    <th>Vencimiento</th>
+                    <th>Días</th>
+                    <th>Estado</th>
+                    <th>Acción</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="policies-body">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <script src="app.js"></script>
+
+</body>
+</html>
