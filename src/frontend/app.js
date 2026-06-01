@@ -50,14 +50,21 @@ function renderPolicies(policies) {
 
             <td>
                 <span class="${getStatusClass(policy.status)}">
-                    ${policy.status}
+                    ${translateStatus(policy.status)}
                 </span>
             </td>
 
+            
             <td>
+
                 <button onclick="openRenewModal(${policy.id})">
                     Renovar
                 </button>
+
+                <button onclick="registerAction(${policy.id})">
+                    Gestionar
+                </button>
+
             </td>
         `;
 
@@ -142,6 +149,64 @@ function getStatusClass(status) {
         default:
             return "";
     }
+}
+
+
+async function registerAction(policyId) {
+
+    const notes = prompt(
+        "Ingrese la observación de gestión:"
+    );
+
+    if (!notes) {
+        return;
+    }
+
+    try {
+
+        const response = await fetch(
+            `http://localhost:8000/api/policies/${policyId}/actions`,
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    notes: notes
+                })
+            }
+        );
+
+        const result = await response.json();
+
+        alert(
+            "Gestión registrada correctamente"
+        );
+
+        console.log(result);
+
+    } catch(error) {
+
+        console.error(error);
+
+        alert(
+            "Error registrando gestión"
+        );
+    }
+}
+
+function translateStatus(status) {
+
+    const map = {
+        upcoming: "Próxima a vencer",
+        renewable: "Renovable",
+        lost: "Fuera de ventana",
+        renewed: "Renovada"
+    };
+
+    return map[status] || status;
 }
 
 loadPolicies();
