@@ -9,6 +9,10 @@ Se busca centralizar las pólizas que están próximas a vencer y las vencidas d
 - Registrar gestión
 - Renovar póliza
 
+upcoming → aún no vence
+renewable → venció hace menos de 30 días
+lost → venció hace más de 30 días
+renewed → ya fue renovada
 # No implementado
 
 - Login
@@ -24,7 +28,7 @@ Dado que e objetivo de la prueba es validar el flujo de gestión de renovaciones
 # Modelo de datos (con supuestos)
 
 Client [id, name, email, phone, document]
-Policy [id, id_client, policy_number, _policy_type, description, issue_date, expiration_date, estatus, last_contact_date, renewed]
+Policy [id, id_client, policy_number, _policy_type, description, issue_date, expiration_date, status, last_contact_date, renewed]
 PolicyAction [id, id_policy, acction_date, notes]
 
 Para simplificar el alcance, la aplicación inicia con datos precargados que representan la cartera de clientes de María. No se implementó la creación de clientes o pólizas desde la interfaz.
